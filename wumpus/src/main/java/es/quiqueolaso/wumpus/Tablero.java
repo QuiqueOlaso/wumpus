@@ -12,7 +12,7 @@ public class Tablero {
 	private Cazador cazador;
 
 	private Wumpus wumpus;
-	
+
 	private Oro oro;
 
 	private List<Trampa> trampas;
@@ -57,11 +57,6 @@ public class Tablero {
 		this.trampas = trampas;
 	}
 
-	public Tablero(int height, int width) {
-		setAlto(height);
-		setAncho(width);
-	}
-
 	public List<Trampa> setTrampas(int cantidad, int height, int width) {
 		if (cantidad <= 0) {
 			return null;
@@ -86,6 +81,19 @@ public class Tablero {
 			return trampasArmadas;
 		}
 
+	}
+
+	public Oro getOro() {
+		return oro;
+	}
+
+	public void setOro(Oro oro) {
+		this.oro = oro;
+	}
+
+	public Tablero(int height, int width) {
+		setAlto(height);
+		setAncho(width);
 	}
 
 }

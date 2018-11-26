@@ -1,18 +1,10 @@
 package es.quiqueolaso.wumpus;
 
-public class Cazador {
+public class Cazador extends Item {
 
-	private int lifeLevel;
+	private boolean alive;
 
 	private int numeroFlechas;
-
-	public int getLifeLevel() {
-		return lifeLevel;
-	}
-
-	public void setLifeLevel(int lifeLevel) {
-		this.lifeLevel = lifeLevel;
-	}
 
 	public int getNumeroFlechas() {
 		return numeroFlechas;
@@ -22,10 +14,18 @@ public class Cazador {
 		this.numeroFlechas = numeroFlechas;
 	}
 
-	public Cazador(int numeroFlechas) {
-		
-		
+	public boolean isAlive() {
+		return alive;
+	}
 
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public Cazador(int coordX, int coordY, int numeroFlechas) {
+		super(coordX, coordY);
+		this.numeroFlechas = numeroFlechas;
+		this.alive = true;
 	}
 
 }
