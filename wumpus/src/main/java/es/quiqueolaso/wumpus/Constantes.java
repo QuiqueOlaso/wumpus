@@ -2,6 +2,10 @@ package es.quiqueolaso.wumpus;
 
 public final class Constantes {
 
+	/* DEBUG */
+
+	public static final boolean DEBUG = true;
+
 	/* OPERACIONES DE SISTEMA */
 
 	public static final String SALIR_PARTIDA = "Q";

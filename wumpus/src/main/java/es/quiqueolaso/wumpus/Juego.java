@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Juego {
 
+	Tablero tablero;
+
 	public Juego(int height, int width, int numeroTrampas, int numeroFlechas) {
 
-		Tablero tablero = new Tablero(height, width);
+		tablero = new Tablero(height, width);
 
 		tablero.setTrampas(numeroTrampas, height, width);
 
@@ -22,6 +24,9 @@ public class Juego {
 
 		tablero.inicializar();
 
+	}
+
+	public void run() {
 		List<Turno> jugadas = new ArrayList<Turno>();
 		int turno = 0;
 
@@ -29,7 +34,7 @@ public class Juego {
 		jugadas.add(disposicionInicial);
 
 		String operacion = JuegoHelper.printDialogoInicial();
-		String respuesta;
+		String respuesta = null;
 
 		if (JuegoHelper.isOperacionSistema(operacion)) {
 			if (Constantes.SALIR_PARTIDA.equals(operacion)) {
@@ -39,16 +44,24 @@ public class Juego {
 			}
 		} else {
 			respuesta = tablero.getCazador().accion(operacion);
+			System.out.println(respuesta);
 		}
 
 		while (tablero.getCazador().isAlive()) {
 			turno++;
+			System.out.println("Turno [" + turno + "]");
 			Turno newTurno = new Turno(turno, tablero);
 			jugadas.add(newTurno);
 			operacion = JuegoHelper.printDialogoTurno();
 			respuesta = tablero.getCazador().accion(operacion);
+			if (Constantes.DEBUG) {
+				System.out.println(tablero.toString());
+				System.out.println(
+						"Cazador:" + tablero.getCazador().getCoordX() + "," + tablero.getCazador().getCoordY());
+				System.out.println("Wumpus:" + tablero.getWumpus().getCoordX() + "," + tablero.getWumpus().getCoordY());
+				System.out.println("Oro:" + tablero.getOro().getCoordX() + "," + tablero.getOro().getCoordY());
+			}
 		}
-
 	}
 
 }

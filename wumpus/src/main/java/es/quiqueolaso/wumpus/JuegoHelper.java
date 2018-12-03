@@ -1,6 +1,8 @@
 package es.quiqueolaso.wumpus;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class JuegoHelper {
 
@@ -30,20 +32,25 @@ public class JuegoHelper {
 	static String printDialogoInicial() {
 		System.out.println("Eres el cazador.");
 		System.out.println("Te encuentras en un bosque");
-		System.out.println("Puedes avanzar en todas direcciones, pero Â¡cuidado! hay trampas");
-		System.out.println("... y el Wumpus estÃ¡ al acecho");
+		System.out.println("Puedes avanzar en todas direcciones, pero ¡cuidado! hay trampas");
+		System.out.println("... y el Wumpus está al acecho");
 		printControles();
-		Scanner scanner = new Scanner(System.in);
-		String operacion = scanner.nextLine();
-		scanner.close();
-		return operacion;
+		return leerRespuesta();
 	}
 
 	static String printDialogoTurno() {
 		printControles();
-		Scanner scanner = new Scanner(System.in);
-		String operacion = scanner.nextLine();
-		scanner.close();
+		return leerRespuesta();
+	}
+
+	private static String leerRespuesta() {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String operacion = null;
+		try {
+			operacion = reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return operacion;
 	}
 

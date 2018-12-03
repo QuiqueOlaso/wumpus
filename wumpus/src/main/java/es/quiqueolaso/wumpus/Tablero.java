@@ -2,8 +2,11 @@ package es.quiqueolaso.wumpus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Tablero {
+
+	private Random randomNum;
 
 	private int alto;
 
@@ -63,20 +66,17 @@ public class Tablero {
 		} else {
 			List<Trampa> trampasArmadas = new ArrayList<Trampa>();
 			for (int i = 0; i <= cantidad; i++) {
-				boolean trampaArmada = false;
 				Trampa nuevaTrampa;
-				while (!trampaArmada) {
-					int coordX = TableroHelper.getCoordX(height);
-					int coordY = TableroHelper.getCoordY(width);
-					nuevaTrampa = new Trampa(i, coordX, coordY);
-					if (trampasArmadas.contains(nuevaTrampa)) {
-						//
-					} else {
-						trampaArmada = true;
-					}
-					trampasArmadas.add(nuevaTrampa);
+				boolean coordenadasReservadas = true;
+				int coordX = -1;
+				int coordY = -1;
+				while (coordenadasReservadas) {
+					coordX = TableroHelper.getRandomCoord(randomNum, ancho);
+					coordY = TableroHelper.getRandomCoord(randomNum, alto);
+					coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
 				}
-				return trampasArmadas;
+				nuevaTrampa = new Trampa(i, coordX, coordY);
+				trampasArmadas.add(nuevaTrampa);
 			}
 			return trampasArmadas;
 		}
@@ -97,93 +97,92 @@ public class Tablero {
 	}
 
 	private void randomizePosicionWumpus() {
-		int coordX = 0;
-		int coordY = 0;
+		boolean coordenadasReservadas = true;
+		int coordX = -1;
+		int coordY = -1;
+		while (coordenadasReservadas) {
+			coordX = TableroHelper.getRandomCoord(randomNum, ancho);
+			coordY = TableroHelper.getRandomCoord(randomNum, alto);
+			coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
+		}
 		this.getWumpus().setCoordX(coordX);
 		this.getWumpus().setCoordY(coordY);
 	}
 
 	private void randomizePosicionCazador() {
-		int coordX = 0;
-		int coordY = 0;
+		boolean coordenadasReservadas = true;
+		int coordX = -1;
+		int coordY = -1;
+		while (coordenadasReservadas) {
+			coordX = TableroHelper.getRandomCoord(randomNum, ancho);
+			coordY = TableroHelper.getRandomCoord(randomNum, alto);
+			coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
+		}
 		this.getCazador().setCoordX(coordX);
 		this.getCazador().setCoordY(coordY);
 	}
 
 	private void randomizePosicionOro() {
-		int coordX = 0;
-		int coordY = 0;
+		boolean coordenadasReservadas = true;
+		int coordX = -1;
+		int coordY = -1;
+		while (coordenadasReservadas) {
+			coordX = TableroHelper.getRandomCoord(randomNum, ancho);
+			coordY = TableroHelper.getRandomCoord(randomNum, alto);
+			coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
+		}
 		this.getOro().setCoordX(coordX);
 		this.getOro().setCoordY(coordY);
 	}
 
+	private boolean checkCoordenadasReservadas(int coordX, int coordY) {
+		boolean respuesta = false;
+		if (this.cazador.getCoordX() == coordX && this.cazador.getCoordY() == coordY) {
+			respuesta = true;
+		} else if (this.wumpus.getCoordX() == coordX && this.wumpus.getCoordY() == coordY) {
+			respuesta = true;
+		} else if (this.oro.getCoordX() == coordX && this.oro.getCoordY() == coordY) {
+			respuesta = true;
+		}
+		return respuesta;
+	}
+
 	public void inicializar() {
+		randomNum = new Random();
 		this.randomizePosicionWumpus();
-		this.randomizePosicionCazador();
 		this.randomizePosicionOro();
+		this.randomizePosicionCazador();
 	}
 
 	public String accion(String operacion) {
-		String respuesta = "RESPUESTA NO DEFINIDA";
-		if (Constantes.AVANZAR.equals(operacion)) {
-			if (Constantes.GIRAR_NORTE.equals(cazador.getEncarado())) {
-				if (cazador.getCoordY() > 1) {
-					cazador.setCoordY(cazador.getCoordY() - 1);
-					respuesta = "Hemos avanzado 1 posición hacia el norte";
-				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la dirección 'norte'";
-				}
-			} else if (Constantes.GIRAR_SUR.equals(cazador.getEncarado())) {
-				if (cazador.getCoordY() > 0 && cazador.getCoordY() < this.getAlto()) {
-					cazador.setCoordY(cazador.getCoordY() + 1);
-					respuesta = "Hemos avanzado 1 posición hacia el sur";
-				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la dirección 'sur'";
-				}
-			} else if (Constantes.GIRAR_ESTE.equals(cazador.getEncarado())) {
-				if (cazador.getCoordX() > 1 && cazador.getCoordX() < this.getAncho()) {
-					cazador.setCoordX(cazador.getCoordX() - 1);
-					respuesta = "Hemos avanzado 1 posición hacia el este";
-				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la dirección 'este'";
-				}
-			} else if (Constantes.GIRAR_OESTE.equals(cazador.getEncarado())) {
-				if (cazador.getCoordX() > 1) {
-					cazador.setCoordX(cazador.getCoordX() - 1);
-					respuesta = "Hemos avanzado 1 posición hacia el oeste";
-				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la dirección 'oeste'";
-				}
-			} else {
+		return TableroHelper.getRespuesta(this, operacion, cazador);
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbf = new StringBuilder();
+		/* pintamos el tablero base. */
+		for (int iii = 0; iii < this.alto; iii++) {
+			for (int jjj = 0; jjj < this.ancho; jjj++) {
+				if (this.wumpus.getCoordX() == jjj && this.wumpus.getCoordY() == iii) {
+					sbf.append("W");
+				} else if (this.cazador.getCoordX() == jjj && this.cazador.getCoordY() == iii) {
+					sbf.append("C");
+				} else if (this.oro.getCoordX() == jjj && this.oro.getCoordY() == iii) {
+					sbf.append("G");
+				} else {
+					sbf.append("�");
+				}
 			}
-
-		} else if (Constantes.GIRAR_NORTE.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.GIRAR_SUR.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.GIRAR_ESTE.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.GIRAR_OESTE.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.SUICIDIO.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.DISPARAR.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else if (Constantes.SALIR.equals(operacion)) {
-			/* no afecta a la disposicion del tablero */
-			respuesta = cazador.accion(operacion);
-		} else {
-			/* no afecta a la disposicion del tablero */
+			sbf.append("\n");
 		}
 
-		return respuesta;
+		return sbf.toString();
 	}
 
 }
