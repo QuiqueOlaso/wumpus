@@ -67,7 +67,8 @@ public class Juego {
 					/* TODO */
 				}
 			} else {
-				respuesta = tablero.getCazador().accion(operacion);
+				// respuesta = tablero.getCazador().accion(operacion);
+				respuesta = tablero.accion(operacion);
 				JuegoHelper.log(respuesta);
 				turno++;
 				turnoAparente++;

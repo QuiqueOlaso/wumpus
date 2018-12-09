@@ -55,7 +55,7 @@ public class TableroHelper {
 		String respuesta = "RESPUESTA NO DEFINIDA";
 		if (Constantes.ACCION_AVANZAR.equalsIgnoreCase(operacion)) {
 			if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(cazador.getEncarado())) {
-				if (cazador.getCoordY() > 1) {
+				if (cazador.getCoordY() > 0 && cazador.getCoordY() < tablero.getAlto()) {
 					cazador.setCoordY(cazador.getCoordY() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el norte";
 				} else {
@@ -69,14 +69,14 @@ public class TableroHelper {
 					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'sur'";
 				}
 			} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(cazador.getEncarado())) {
-				if (cazador.getCoordX() > 1 && cazador.getCoordX() < tablero.getAncho()) {
+				if (cazador.getCoordX() > 0 && cazador.getCoordX() < tablero.getAncho()) {
 					cazador.setCoordX(cazador.getCoordX() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el este";
 				} else {
 					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'este'";
 				}
 			} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(cazador.getEncarado())) {
-				if (cazador.getCoordX() > 1) {
+				if (cazador.getCoordX() > 0 && cazador.getCoordX() < tablero.getAncho()) {
 					cazador.setCoordX(cazador.getCoordX() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el oeste";
 				} else {

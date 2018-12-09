@@ -268,12 +268,16 @@ public class Tablero {
 	 */
 	private void randomizePosicionCazador() {
 		boolean coordenadasReservadas = true;
+		boolean lejaniaWumpus = true;
+		boolean lejaniaOro = true;
 		int coordX = -1;
 		int coordY = -1;
-		while (coordenadasReservadas) {
+		while (coordenadasReservadas && lejaniaWumpus && lejaniaOro) {
 			coordX = TableroHelper.getRandomCoord(randomNum, ancho);
 			coordY = TableroHelper.getRandomCoord(randomNum, alto);
 			coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
+			lejaniaWumpus = checkLejaniaWumpus();
+			lejaniaOro = checkLejaniaOro();
 		}
 		this.getCazador().setCoordX(coordX);
 		this.getCazador().setCoordY(coordY);
@@ -325,6 +329,36 @@ public class Tablero {
 		} else if (this.wumpus.getCoordX() == coordX && this.wumpus.getCoordY() == coordY) {
 			respuesta = true;
 		} else if (this.oro.getCoordX() == coordX && this.oro.getCoordY() == coordY) {
+			respuesta = true;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check lejania wumpus.
+	 *
+	 * @return true, if successful
+	 */
+	protected boolean checkLejaniaWumpus() {
+		boolean respuesta = false;
+		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getWumpus().getCoordX());
+		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getWumpus().getCoordY());
+		if (distanciaX >= this.getAncho() / 2 && distanciaY >= this.getAlto() / 2) {
+			respuesta = true;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check lejania oro.
+	 *
+	 * @return true, if successful
+	 */
+	private boolean checkLejaniaOro() {
+		boolean respuesta = false;
+		int separacionX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getOro().getCoordX());
+		int separacionY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getOro().getCoordY());
+		if (separacionX >= this.getAncho() / 2 && separacionY >= this.getAlto() / 2) {
 			respuesta = true;
 		}
 		return respuesta;
