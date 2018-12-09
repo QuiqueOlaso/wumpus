@@ -61,9 +61,9 @@ public class Juego {
 			printInfoAboutTurno();
 			operacion = JuegoHelper.printDialogoTurno();
 			if (JuegoHelper.isOperacionSistema(operacion)) {
-				if (Constantes.SALIR_PARTIDA.equals(operacion)) {
+				if (Constantes.ACCION_SALIR_PARTIDA.equalsIgnoreCase(operacion)) {
 					System.exit(0);
-				} else if (Constantes.RESET_PARTIDA.equals(operacion)) {
+				} else if (Constantes.ACCION_RESET_PARTIDA.equalsIgnoreCase(operacion)) {
 					/* TODO */
 				}
 			} else {

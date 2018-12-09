@@ -90,10 +90,10 @@ public class Cazador extends Item {
 	private String encararInicial() {
 		Random randomizer = new Random();
 		List<String> list = new ArrayList<String>();
-		list.add(Constantes.MIRAR_NORTE);
-		list.add(Constantes.MIRAR_SUR);
-		list.add(Constantes.MIRAR_ESTE);
-		list.add(Constantes.MIRAR_OESTE);
+		list.add(Constantes.ACCION_MIRAR_NORTE);
+		list.add(Constantes.ACCION_MIRAR_SUR);
+		list.add(Constantes.ACCION_MIRAR_ESTE);
+		list.add(Constantes.ACCION_MIRAR_OESTE);
 		String random = list.get(randomizer.nextInt(list.size()));
 		return random;
 	}
@@ -106,49 +106,48 @@ public class Cazador extends Item {
 	 */
 	public String accion(String operacion) {
 		String respuesta = null;
-		if (Constantes.AVANZAR.equals(operacion)) {
-			if (Constantes.MIRAR_NORTE.equals(encarado)) {
+		if (Constantes.ACCION_AVANZAR.equalsIgnoreCase(operacion)) {
+			if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
 				this.setCoordY(this.getCoordY() - 1);
 				respuesta = "has avanzado en direccion Norte";
-			} else if (Constantes.MIRAR_SUR.equals(encarado)) {
+			} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
 				this.setCoordY(this.getCoordY() + 1);
 				respuesta = "has avanzado en direccion Sur";
-			} else if (Constantes.MIRAR_ESTE.equals(encarado)) {
+			} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
 				this.setCoordX(this.getCoordX() + 1);
 				respuesta = "has avanzado en direccion Este";
-			} else if (Constantes.MIRAR_OESTE.equals(encarado)) {
+			} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
 				this.setCoordX(this.getCoordX() - 1);
 				respuesta = "has avanzado en direccion Oeste";
 			} else {
 				/* . */
 			}
-
-		} else if (Constantes.MIRAR_NORTE.equals(operacion)) {
-			encarado = Constantes.MIRAR_NORTE;
+		} else if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(operacion)) {
+			encarado = Constantes.ACCION_MIRAR_NORTE;
 			respuesta = "te has encarado al norte";
-		} else if (Constantes.MIRAR_SUR.equals(operacion)) {
-			encarado = Constantes.MIRAR_SUR;
+		} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(operacion)) {
+			encarado = Constantes.ACCION_MIRAR_SUR;
 			respuesta = "te has encarado al sur";
-		} else if (Constantes.MIRAR_ESTE.equals(operacion)) {
-			encarado = Constantes.MIRAR_ESTE;
+		} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(operacion)) {
+			encarado = Constantes.ACCION_MIRAR_ESTE;
 			respuesta = "te has encarado al este";
-		} else if (Constantes.MIRAR_OESTE.equals(operacion)) {
-			encarado = Constantes.MIRAR_OESTE;
+		} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(operacion)) {
+			encarado = Constantes.ACCION_MIRAR_OESTE;
 			respuesta = "te has encarado al oeste";
-		} else if (Constantes.SUICIDIO.equals(operacion)) {
+		} else if (Constantes.ACCION_SUICIDIO.equalsIgnoreCase(operacion)) {
 			this.setAlive(false);
 			respuesta = "te has suicidado";
-		} else if (Constantes.DISPARAR.equals(operacion)) {
+		} else if (Constantes.ACCION_DISPARAR.equalsIgnoreCase(operacion)) {
 			if (numeroFlechas > 0) {
 				this.numeroFlechas--;
 				respuesta = "has disparado 1 flecha. Te quedan " + numeroFlechas;
 			} else if (numeroFlechas == 2) {
 				this.numeroFlechas--;
-				respuesta = "has disparado 1 flecha. Te queda 1 flecha. Sé cuidadoso";
+				respuesta = "has disparado 1 flecha. Te queda 1 flecha. S\u00e9 cuidadoso";
 			} else {
 				respuesta = "no te quedan flechas para disparar";
 			}
-		} else if (Constantes.SALIR.equals(operacion)) {
+		} else if (Constantes.ACCION_SALIR.equalsIgnoreCase(operacion)) {
 			respuesta = "has salido del bosque";
 		} else {
 			respuesta = "";

@@ -224,29 +224,30 @@ public class Tablero {
 		for (int yyy = 0; yyy < this.alto; yyy++) {
 			for (int xxx = 0; xxx < this.ancho; xxx++) {
 				if (this.wumpus.getCoordX() == xxx && this.wumpus.getCoordY() == yyy) {
-					sbf.append("\u0057"); /* W. */
+					sbf.append(Constantes.LEYENDA_WUMPUS); /* W. */
 				} else if (this.cazador.getCoordX() == xxx && this.cazador.getCoordY() == yyy) {
 					// sbf.append("\u0043"); /* C. */
-					if (Constantes.MIRAR_NORTE.equals(cazador.getEncarado())) {
-						sbf.append("\u02C4");
-					} else if (Constantes.MIRAR_SUR.equals(cazador.getEncarado())) {
-						sbf.append("\u02C5");
-					} else if (Constantes.MIRAR_ESTE.equals(cazador.getEncarado())) {
-						sbf.append("\u02C3");
-					} else if (Constantes.MIRAR_OESTE.equals(cazador.getEncarado())) {
-						sbf.append("\u02C2");
+					if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(cazador.getEncarado())) {
+						sbf.append(Constantes.LEYENDA_CAZADOR_NORTE);
+					} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(cazador.getEncarado())) {
+						sbf.append(Constantes.LEYENDA_CAZADOR_SUR);
+					} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(cazador.getEncarado())) {
+						sbf.append(Constantes.LEYENDA_CAZADOR_ESTE);
+					} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(cazador.getEncarado())) {
+						sbf.append(Constantes.LEYENDA_CAZADOR_OESTE);
 					} else {
-						sbf.append("?");
+						JuegoHelper.log("cazador.getEncarado()=" + cazador.getEncarado());
+						sbf.append(Constantes.LEYENDA_CAZADOR_DESCONOCIDO);
 					}
 				} else if (this.oro.getCoordX() == xxx && this.oro.getCoordY() == yyy) {
-					sbf.append("\u0047"); /* G. */
+					sbf.append(Constantes.LEYENDA_ORO); /* G. */
 				} else {
-					sbf.append("\u00B7"); /* middle dot. */
+					sbf.append(Constantes.LEYENDA_CASILLA); /* middle dot. */
 				}
 				if (this.getTrampas() != null) {
 					for (Trampa trampa : this.getTrampas()) {
 						if (trampa.getCoordX() == xxx && trampa.getCoordY() == yyy) {
-							sbf.append("\u002A"); /* asterisk. */
+							sbf.append(Constantes.LEYENDA_TRAMPA); /* asterisk. */
 						}
 					}
 				}

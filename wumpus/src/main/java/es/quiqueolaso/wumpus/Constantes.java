@@ -11,41 +11,70 @@ public final class Constantes {
 	/** The Constant DEBUG. */
 	public static final boolean DEBUG = true;
 
-	/* OPERACIONES DE SISTEMA */
+	/* OPERACIONES DE SISTEMA. */
 
-	/** The Constant SALIR_PARTIDA. */
-	public static final String SALIR_PARTIDA = "Q";
+	/** The Constant ACCION_SALIR_PARTIDA. */
+	public static final String ACCION_SALIR_PARTIDA = "Q";
 
-	/** The Constant RESET_PARTIDA. */
-	public static final String RESET_PARTIDA = "R";
+	/** The Constant ACCION_RESET_PARTIDA. */
+	public static final String ACCION_RESET_PARTIDA = "R";
 
-	/* ACCIONES PERMITIDAS A CAZADOR */
+	/* ACCIONES PERMITIDAS A CAZADOR. */
 
-	/** The Constant GIRAR_NORTE. */
-	public static final String MIRAR_NORTE = "N";
+	/** The Constant ACCION_MIRAR_NORTE. */
+	public static final String ACCION_MIRAR_NORTE = "N";
 
-	/** The Constant GIRAR_SUR. */
-	public static final String MIRAR_SUR = "S";
+	/** The Constant ACCION_MIRAR_SUR. */
+	public static final String ACCION_MIRAR_SUR = "S";
 
-	/** The Constant GIRAR_ESTE. */
-	public static final String MIRAR_ESTE = "E";
+	/** The Constant ACCION_MIRAR_ESTE. */
+	public static final String ACCION_MIRAR_ESTE = "E";
 
-	/** The Constant GIRAR_OESTE. */
-	public static final String MIRAR_OESTE = "W";
+	/** The Constant ACCION_MIRAR_OESTE. */
+	public static final String ACCION_MIRAR_OESTE = "W";
 
-	/** The Constant AVANZAR. */
-	public static final String AVANZAR = "A";
+	/** The Constant ACCION_AVANZAR. */
+	public static final String ACCION_AVANZAR = "A";
 
-	/** The Constant DISPARAR. */
-	public static final String DISPARAR = "F";
+	/** The Constant ACCION_DISPARAR. */
+	public static final String ACCION_DISPARAR = "F";
 
-	/** The Constant SALIR. */
-	public static final String SALIR = "M";
+	/** The Constant ACCION_SALIR. */
+	public static final String ACCION_SALIR = "M";
 
-	/** The Constant SUICIDIO. */
-	public static final String SUICIDIO = "X";
+	/** The Constant ACCION_SUICIDIO. */
+	public static final String ACCION_SUICIDIO = "X";
 
-	/** The Constant SALIDA_VOLUNTARIA. */
-	public static final String SALIDA_VOLUNTARIA = "G";
+	/** The Constant ACCION_SALIDA_VOLUNTARIA. */
+	public static final String ACCION_SALIDA_VOLUNTARIA = "G";
+
+	/* LEYENDA. */
+
+	/** The Constant LEYENDA_TRAMPA. */
+	static final String LEYENDA_TRAMPA = "\u002A";
+
+	/** The Constant LEYENDA_CASILLA. */
+	static final String LEYENDA_CASILLA = "\u00B7";
+
+	/** The Constant LEYENDA_ORO. */
+	static final String LEYENDA_ORO = "\u0047";
+
+	/** The Constant LEYENDA_WUMPUS. */
+	static final String LEYENDA_WUMPUS = "\u0057";
+
+	/** The Constant LEYENDA_CAZADOR_OESTE. */
+	static final String LEYENDA_CAZADOR_OESTE = "\u02C2";
+
+	/** The Constant LEYENDA_CAZADOR_ESTE. */
+	static final String LEYENDA_CAZADOR_ESTE = "\u02C3";
+
+	/** The Constant LEYENDA_CAZADOR_SUR. */
+	static final String LEYENDA_CAZADOR_SUR = "\u02C5";
+
+	/** The Constant LEYENDA_CAZADOR_NORTE. */
+	static final String LEYENDA_CAZADOR_NORTE = "\u02C4";
+
+	/** The Constant LEYENDA_CAZADOR_DESCONOCIDO. */
+	static final String LEYENDA_CAZADOR_DESCONOCIDO = "-";
 
 }

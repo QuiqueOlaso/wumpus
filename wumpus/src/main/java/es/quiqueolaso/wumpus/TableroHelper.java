@@ -53,58 +53,58 @@ public class TableroHelper {
 	 */
 	static String getRespuesta(Tablero tablero, String operacion, Cazador cazador) {
 		String respuesta = "RESPUESTA NO DEFINIDA";
-		if (Constantes.AVANZAR.equals(operacion)) {
-			if (Constantes.MIRAR_NORTE.equals(cazador.getEncarado())) {
+		if (Constantes.ACCION_AVANZAR.equalsIgnoreCase(operacion)) {
+			if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(cazador.getEncarado())) {
 				if (cazador.getCoordY() > 1) {
 					cazador.setCoordY(cazador.getCoordY() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el norte";
 				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la direcci\u00F3n 'norte'";
+					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'norte'";
 				}
-			} else if (Constantes.MIRAR_SUR.equals(cazador.getEncarado())) {
+			} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(cazador.getEncarado())) {
 				if (cazador.getCoordY() > 0 && cazador.getCoordY() < tablero.getAlto()) {
 					cazador.setCoordY(cazador.getCoordY() + 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el sur";
 				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la direcci\u00F3n 'sur'";
+					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'sur'";
 				}
-			} else if (Constantes.MIRAR_ESTE.equals(cazador.getEncarado())) {
+			} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(cazador.getEncarado())) {
 				if (cazador.getCoordX() > 1 && cazador.getCoordX() < tablero.getAncho()) {
 					cazador.setCoordX(cazador.getCoordX() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el este";
 				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la direcci\u00F3n 'este'";
+					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'este'";
 				}
-			} else if (Constantes.MIRAR_OESTE.equals(cazador.getEncarado())) {
+			} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(cazador.getEncarado())) {
 				if (cazador.getCoordX() > 1) {
 					cazador.setCoordX(cazador.getCoordX() - 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el oeste";
 				} else {
-					respuesta = "Estamos en los limites del tablero. No podemos avanzar más en la direcci\u00F3n 'oeste'";
+					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'oeste'";
 				}
 			} else {
 
 			}
 
-		} else if (Constantes.MIRAR_NORTE.equals(operacion)) {
+		} else if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.MIRAR_SUR.equals(operacion)) {
+		} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.MIRAR_ESTE.equals(operacion)) {
+		} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.MIRAR_OESTE.equals(operacion)) {
+		} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.SUICIDIO.equals(operacion)) {
+		} else if (Constantes.ACCION_SUICIDIO.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.DISPARAR.equals(operacion)) {
+		} else if (Constantes.ACCION_DISPARAR.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
-		} else if (Constantes.SALIR.equals(operacion)) {
+		} else if (Constantes.ACCION_SALIR.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);
 		} else {
