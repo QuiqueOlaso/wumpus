@@ -159,7 +159,7 @@ public class JuegoHelper {
 			Log.info("Te encuentras en el borde sur del bosque, con el linde del mismo a tu izquierda");
 			/* ?.?. */
 		} else {
-			Log.info("Te encuentras en el borde del bosque, pero no sabes exactamente d\u00e9nde");
+			Log.info("Te encuentras en el interior del bosque, pero no sabes exactamente d\u00e9nde");
 		}
 
 		tablero.getAlto();

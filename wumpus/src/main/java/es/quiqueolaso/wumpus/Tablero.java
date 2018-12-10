@@ -465,10 +465,10 @@ public class Tablero {
 		int respuesta = -1;
 		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - trampa.getCoordX());
 		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - trampa.getCoordY());
-		Log.debug(" * cazador=" + cazador.toString());
-		Log.debug(" * trampa=" + trampa.toString());
-		Log.debug(" * distanciaX=" + distanciaX);
-		Log.debug(" * distanciaY=" + distanciaY);
+		Log.trace(" * cazador=" + cazador.toString());
+		Log.trace(" * trampa=" + trampa.toString());
+		Log.trace(" * distanciaX=" + distanciaX);
+		Log.trace(" * distanciaY=" + distanciaY);
 		if (distanciaX == 0 && distanciaY == 0) {
 			respuesta = 0;
 		} else if (distanciaX == 1 || distanciaY == 1) {

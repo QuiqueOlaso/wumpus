@@ -71,6 +71,7 @@ public class Juego {
 				respuesta = tablero.accion(operacion);
 				Log.info(respuesta);
 				respuesta = tablero.reaccion();
+				Log.info(respuesta);
 				turno++;
 				turnoAparente++;
 				JuegoHelper.printTurno(turnoAparente);

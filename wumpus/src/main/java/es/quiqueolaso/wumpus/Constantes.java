@@ -1,5 +1,7 @@
 package es.quiqueolaso.wumpus;
 
+import es.quiqueolaso.wumpus.utils.LogLevel;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Constantes.
@@ -8,8 +10,8 @@ public final class Constantes {
 
 	/* DEBUG */
 
-	/** The Constant DEBUG. */
-	public static final boolean DEBUG = true;
+	/** The Constant LOGLEVEL. */
+	public static final String LOGLEVEL = LogLevel.DEBUG;
 
 	/* OPERACIONES DE SISTEMA. */
 

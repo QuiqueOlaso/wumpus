@@ -48,7 +48,7 @@ public class TableroHelper {
 				}
 			} else if (Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(cazador.getEncarado())) {
 				if (cazador.getCoordX() > 0 && cazador.getCoordX() < tablero.getAncho()) {
-					cazador.setCoordX(cazador.getCoordX() - 1);
+					cazador.setCoordX(cazador.getCoordX() + 1);
 					respuesta = "Hemos avanzado 1 posici\u00F3n hacia el este";
 				} else {
 					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'este'";
@@ -61,9 +61,8 @@ public class TableroHelper {
 					respuesta = "Estamos en los limites del tablero. No podemos avanzar m\u00e1s en la direcci\u00F3n 'oeste'";
 				}
 			} else {
-
+				/* nothing to do. */
 			}
-
 		} else if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(operacion)) {
 			/* no afecta a la disposicion del tablero */
 			respuesta = cazador.accion(operacion);

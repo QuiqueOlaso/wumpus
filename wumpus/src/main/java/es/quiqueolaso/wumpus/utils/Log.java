@@ -14,7 +14,18 @@ public class Log {
 	 * @param message the message
 	 */
 	public static void debug(String message) {
-		if (Constantes.DEBUG) {
+		if (Constantes.LOGLEVEL.equals(LogLevel.DEBUG)) {
+			log(message);
+		}
+	}
+
+	/**
+	 * Trace.
+	 *
+	 * @param message the message
+	 */
+	public static void trace(String message) {
+		if (Constantes.LOGLEVEL.equals(LogLevel.TRACE)) {
 			log(message);
 		}
 	}
