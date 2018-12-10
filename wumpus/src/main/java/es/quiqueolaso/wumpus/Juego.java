@@ -3,6 +3,8 @@ package es.quiqueolaso.wumpus;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.quiqueolaso.wumpus.utils.Log;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Juego.
@@ -35,9 +37,7 @@ public class Juego {
 		tablero.setOro(oro);
 
 		/* disposicion de tablero. */
-
 		tablero.inicializar();
-
 		tablero.inicializarTrampas(numeroTrampas, height, width);
 
 	}
@@ -58,7 +58,7 @@ public class Juego {
 			Turno newTurno = new Turno(turno, tablero);
 			jugadas.add(newTurno);
 			JuegoHelper.printPosicionCazadorRespectoTablero(tablero);
-			printInfoAboutTurno();
+			printDebugAboutTurno();
 			operacion = JuegoHelper.printDialogoTurno();
 			if (JuegoHelper.isOperacionSistema(operacion)) {
 				if (Constantes.ACCION_SALIR_PARTIDA.equalsIgnoreCase(operacion)) {
@@ -69,7 +69,8 @@ public class Juego {
 			} else {
 				// respuesta = tablero.getCazador().accion(operacion);
 				respuesta = tablero.accion(operacion);
-				JuegoHelper.log(respuesta);
+				Log.info(respuesta);
+				respuesta = tablero.reaccion();
 				turno++;
 				turnoAparente++;
 				JuegoHelper.printTurno(turnoAparente);
@@ -77,20 +78,19 @@ public class Juego {
 		}
 	}
 
-	private void printInfoAboutTurno() {
-		if (Constantes.DEBUG) {
-			JuegoHelper.log(tablero.toString());
-			JuegoHelper.log("Cazador:" + tablero.getCazador().getCoordX() + "," + tablero.getCazador().getCoordY());
-			JuegoHelper.log("Wumpus: " + tablero.getWumpus().getCoordX() + "," + tablero.getWumpus().getCoordY());
-			JuegoHelper.log("Oro: " + tablero.getOro().getCoordX() + "," + tablero.getOro().getCoordY());
-			if (tablero.getTrampas() == null || tablero.getTrampas().isEmpty()) {
-				JuegoHelper.log("Trampas: no existen");
-			} else {
-				for (Trampa trampa : tablero.getTrampas()) {
-					JuegoHelper.log("Trampa: " + trampa.getCoordX() + "," + trampa.getCoordY());
-				}
+	private void printDebugAboutTurno() {
+		Log.debug(tablero.toString());
+		Log.debug("Cazador:" + tablero.getCazador().getCoordX() + "," + tablero.getCazador().getCoordY());
+		Log.debug("Wumpus: " + tablero.getWumpus().getCoordX() + "," + tablero.getWumpus().getCoordY());
+		Log.debug("Oro: " + tablero.getOro().getCoordX() + "," + tablero.getOro().getCoordY());
+		if (tablero.getTrampas() == null || tablero.getTrampas().isEmpty()) {
+			Log.debug("Trampas: no existen");
+		} else {
+			for (Trampa trampa : tablero.getTrampas()) {
+				Log.debug("Trampa: " + trampa.getCoordX() + "," + trampa.getCoordY());
 			}
 		}
+
 	}
 
 }

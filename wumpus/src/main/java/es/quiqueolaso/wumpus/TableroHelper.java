@@ -22,28 +22,6 @@ public class TableroHelper {
 	}
 
 	/**
-	 * Gets the coord X.
-	 *
-	 * @param height the height
-	 * @return the coord X
-	 */
-	public static int getCoordX(int height) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
-	 * Gets the coord Y.
-	 *
-	 * @param width the width
-	 * @return the coord Y
-	 */
-	public static int getCoordY(int width) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
 	 * Gets the respuesta.
 	 *
 	 * @param tablero   the tablero

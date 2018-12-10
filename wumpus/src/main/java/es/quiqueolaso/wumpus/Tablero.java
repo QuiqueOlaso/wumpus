@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import es.quiqueolaso.wumpus.utils.Log;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Tablero.
@@ -212,6 +214,47 @@ public class Tablero {
 		return TableroHelper.getRespuesta(this, operacion, cazador);
 	}
 
+	/**
+	 * Reaccion.
+	 *
+	 * @return the string
+	 */
+	public String reaccion() {
+		StringBuilder sbr = new StringBuilder();
+		if (this.checkDistanciaWumpus() == 0) {
+			sbr.append("El cazador se encuentra en la misma casilla que el Wumpus!");
+			if (this.getWumpus().isAlive()) {
+				sbr.append(
+						"Lamentablemente, el Wumpus ha logrado acechar con éxito al Cazador, y éste ha fallecido...");
+			}
+			sbr.append("\n");
+		} else if (this.checkDistanciaWumpus() == 1) {
+			sbr.append("El cazador percibe el hedor del Wumpus ...");
+			sbr.append("\n");
+		}
+		if (this.checkDistanciaOro() == 0) {
+			sbr.append("El cazador se encuentra en la misma casilla que el Oro!");
+			sbr.append("\n");
+		} else if (this.checkDistanciaOro() == 1) {
+			sbr.append("El cazador percibe el brillo del Oro ...");
+			sbr.append("\n");
+		}
+		if (this.checkDistanciaTrampas() == 0) {
+			sbr.append("El cazador se encuentra en la misma casilla que una de las trampas!");
+			sbr.append("\n");
+		} else if (this.checkDistanciaTrampas() == 1) {
+			sbr.append("El cazador percibe una ligera brisa que parece provenir de alguna trampa cercana ...");
+			sbr.append("\n");
+		}
+
+		if (!this.getWumpus().isAlive()) {
+			sbr.append("El cazador oye el grito de dolor del Wumpus: Lo ha abatido!!");
+			sbr.append("\n");
+		}
+		return sbr.toString();
+
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -235,7 +278,7 @@ public class Tablero {
 					} else if (Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(cazador.getEncarado())) {
 						sbf.append(Constantes.LEYENDA_CAZADOR_OESTE);
 					} else {
-						JuegoHelper.log("cazador.getEncarado()=" + cazador.getEncarado());
+						Log.debug("cazador.getEncarado()=" + cazador.getEncarado());
 						sbf.append(Constantes.LEYENDA_CAZADOR_DESCONOCIDO);
 					}
 				} else if (this.oro.getCoordX() == xxx && this.oro.getCoordY() == yyy) {
@@ -275,8 +318,8 @@ public class Tablero {
 			coordX = TableroHelper.getRandomCoord(randomNum, ancho);
 			coordY = TableroHelper.getRandomCoord(randomNum, alto);
 			coordenadasReservadas = checkCoordenadasReservadas(coordX, coordY);
-			lejaniaWumpus = checkLejaniaWumpus();
-			lejaniaOro = checkLejaniaOro();
+			lejaniaWumpus = checkDistanciaInicialWumpus();
+			lejaniaOro = checkDistanciaInicialOro();
 		}
 		this.getCazador().setCoordX(coordX);
 		this.getCazador().setCoordY(coordY);
@@ -334,11 +377,11 @@ public class Tablero {
 	}
 
 	/**
-	 * Check lejania wumpus.
+	 * Check distancia inicial wumpus.
 	 *
 	 * @return true, if successful
 	 */
-	protected boolean checkLejaniaWumpus() {
+	protected boolean checkDistanciaInicialWumpus() {
 		boolean respuesta = false;
 		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getWumpus().getCoordX());
 		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getWumpus().getCoordY());
@@ -349,16 +392,87 @@ public class Tablero {
 	}
 
 	/**
-	 * Check lejania oro.
+	 * Check distancia wumpus.
+	 *
+	 * @return the int
+	 */
+	protected int checkDistanciaWumpus() {
+		int respuesta = -1;
+		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getWumpus().getCoordX());
+		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getWumpus().getCoordY());
+		if (distanciaX == 0 && distanciaY == 0) {
+			respuesta = 0;
+		} else if (distanciaX == 1 || distanciaY == 1) {
+			respuesta = 1;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check distancia inicial oro.
 	 *
 	 * @return true, if successful
 	 */
-	private boolean checkLejaniaOro() {
+	protected boolean checkDistanciaInicialOro() {
 		boolean respuesta = false;
 		int separacionX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getOro().getCoordX());
 		int separacionY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getOro().getCoordY());
 		if (separacionX >= this.getAncho() / 2 && separacionY >= this.getAlto() / 2) {
 			respuesta = true;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check distancia oro.
+	 *
+	 * @return the int
+	 */
+	protected int checkDistanciaOro() {
+		int respuesta = -1;
+		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - this.getOro().getCoordX());
+		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - this.getOro().getCoordY());
+		if (distanciaX == 0 && distanciaY == 0) {
+			respuesta = 0;
+		} else if (distanciaX == 1 || distanciaY == 1) {
+			respuesta = 1;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check distancia trampas.
+	 *
+	 * @return the int
+	 */
+	protected int checkDistanciaTrampas() {
+		int respuesta = -1;
+		int nTrampas = 0;
+		while (respuesta == -1 && nTrampas < this.getTrampas().size()) {
+			respuesta = checkDistanciaTrampaIndividual(this.getTrampas().get(nTrampas));
+			nTrampas++;
+		}
+		return respuesta;
+	}
+
+	/**
+	 * Check distancia trampa individual.
+	 *
+	 * @param trampa the trampa
+	 * @return the int
+	 */
+	private int checkDistanciaTrampaIndividual(Trampa trampa) {
+		int respuesta = -1;
+		int distanciaX = java.lang.Math.abs(this.getCazador().getCoordX() - trampa.getCoordX());
+		int distanciaY = java.lang.Math.abs(this.getCazador().getCoordY() - trampa.getCoordY());
+		Log.debug(" * cazador=" + cazador.toString());
+		Log.debug(" * trampa=" + trampa.toString());
+		Log.debug(" * distanciaX=" + distanciaX);
+		Log.debug(" * distanciaY=" + distanciaY);
+		if (distanciaX == 0 && distanciaY == 0) {
+			respuesta = 0;
+		} else if (distanciaX == 1 || distanciaY == 1) {
+			respuesta = 1;
 		}
 		return respuesta;
 	}

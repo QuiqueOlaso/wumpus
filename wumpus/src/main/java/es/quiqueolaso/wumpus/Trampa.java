@@ -54,7 +54,7 @@ public class Trampa extends Item {
 	/**
 	 * Instantiates a new trampa.
 	 *
-	 * @param id the id
+	 * @param id     the id
 	 * @param coordX the coord X
 	 * @param coordY the coord Y
 	 */
@@ -62,6 +62,25 @@ public class Trampa extends Item {
 		super(coordX, coordY);
 		this.setId(id);
 		this.setEnabled(true);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbr = new StringBuilder();
+		sbr.append("Trampa[");
+		sbr.append("id=");
+		sbr.append(this.getId());
+		sbr.append(",x=");
+		sbr.append(this.getCoordX());
+		sbr.append(",y=");
+		sbr.append(this.getCoordY());
+		sbr.append("]");
+		return sbr.toString();
 	}
 
 }

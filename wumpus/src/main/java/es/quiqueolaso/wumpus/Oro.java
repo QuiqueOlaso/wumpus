@@ -38,4 +38,21 @@ public class Oro extends Item {
 		this.setFound(false);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbr = new StringBuilder();
+		sbr.append("Oro[");
+		sbr.append("x=");
+		sbr.append(this.getCoordX());
+		sbr.append(",y=");
+		sbr.append(this.getCoordY());
+		sbr.append("]");
+		return sbr.toString();
+	}
+
 }

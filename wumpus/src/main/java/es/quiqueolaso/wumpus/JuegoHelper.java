@@ -3,8 +3,7 @@ package es.quiqueolaso.wumpus;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import es.quiqueolaso.wumpus.utils.Log;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -28,37 +27,21 @@ public class JuegoHelper {
 	}
 
 	/**
-	 * Logging
-	 * 
-	 * @param message
-	 */
-	static void log(String message) {
-		System.out.println(message);
-		/*
-		 * try { String encoding_iso88591 = "ISO-8859-1"; String encoding_utf8 =
-		 * "UTF-8"; String encoding_utf16 = "UTF-16"; String encoding_usascii =
-		 * "US-ASCII"; String encoding_windows1252="windows-1252"; PrintStream ps = new
-		 * PrintStream(System.out, true, encoding_windows1252); ps.println(message); }
-		 * catch (UnsupportedEncodingException e) { e.printStackTrace(); }
-		 */
-	}
-
-	/**
 	 * Prints the controles.
 	 */
 	static void printControles() {
-		log(" --------------------------");
-		log("Controles:");
-		log(" * 'N' encarar al norte");
-		log(" * 'S' encarar al sur");
-		log(" * 'W' encarar al oeste");
-		log(" * 'E' encarar al este");
-		log(" * 'A' avanzar");
-		log(" * 'F' disparar");
-		log(" * 'M' salir del bosque");
-		log(" --------------------------");
-		log(" * 'Q' abandonar el juego");
-		log(" * 'R' reiniciar el juego");
+		Log.info(" --------------------------");
+		Log.info("Controles:");
+		Log.info(" * 'N' encarar al norte");
+		Log.info(" * 'S' encarar al sur");
+		Log.info(" * 'W' encarar al oeste");
+		Log.info(" * 'E' encarar al este");
+		Log.info(" * 'A' avanzar");
+		Log.info(" * 'F' disparar");
+		Log.info(" * 'M' salir del bosque");
+		Log.info(" --------------------------");
+		Log.info(" * 'Q' abandonar el juego");
+		Log.info(" * 'R' reiniciar el juego");
 	}
 
 	/**
@@ -67,10 +50,10 @@ public class JuegoHelper {
 	 * @return the string
 	 */
 	static void printDialogoInicial() {
-		log("Eres el cazador.");
-		log("Te encuentras en un bosque");
-		log("Puedes avanzar en todas direcciones, pero \u00a1cuidado! hay trampas");
-		log("... y el Wumpus est\u00e1 al acecho");
+		Log.info("Eres el cazador.");
+		Log.info("Te encuentras en un bosque");
+		Log.info("Puedes avanzar en todas direcciones, pero \u00a1cuidado! hay trampas");
+		Log.info("... y el Wumpus est\u00e1 al acecho");
 	}
 
 	/**
@@ -108,67 +91,75 @@ public class JuegoHelper {
 
 		/* 0,0. */
 		if (coordX == 0 && coordY == 0 && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu izquierda y frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info(
+					"Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu izquierda y frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 		} else if (coordX == 0 && coordY == 0 && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu derecha y espalda");
+			Log.info(
+					"Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu derecha y espalda");
 		} else if (coordX == 0 && coordY == 0 && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu izquierda y espalda");
+			Log.info(
+					"Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu izquierda y espalda");
 		} else if (coordX == 0 && coordY == 0 && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu derecha y frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info(
+					"Te encuentras en el borde nor-occidental del bosque, con el linde del mismo a tu derecha y frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 			/* MAX,MAX. */
 		} else if (coordX >= ancho && coordY >= alto && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu derecha y espalda");
+			Log.info(
+					"Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu derecha y espalda");
 		} else if (coordX >= ancho && coordY >= alto && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu izquierda y frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info(
+					"Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu izquierda y frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 		} else if (coordX >= ancho && coordY >= alto && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu derecha y frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info(
+					"Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu derecha y frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 		} else if (coordX >= ancho && coordY >= alto && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu izquierda y espalda");
+			Log.info(
+					"Te encuentras en el borde sud-oriental del bosque, con el linde del mismo a tu izquierda y espalda");
 			/* 0, ?. */
 		} else if (coordX == 0 && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu izquierda");
+			Log.info("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu izquierda");
 		} else if (coordX == 0 && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu derecha");
+			Log.info("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu derecha");
 		} else if (coordX == 0 && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu espalda");
+			Log.info("Te encuentras en el borde occidental del bosque, con el linde del mismo a tu espalda");
 		} else if (coordX == 0 && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde occidental del bosque, con el linde del mismo frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info("Te encuentras en el borde occidental del bosque, con el linde del mismo frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 			/* MAX, ?. */
 		} else if (coordX >= ancho && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu derecha");
+			Log.info("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu derecha");
 		} else if (coordX >= ancho && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu izquierda");
+			Log.info("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu izquierda");
 		} else if (coordX >= ancho && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde oriental del bosque, con el linde del mismo frente a ti");
+			Log.info("Te encuentras en el borde oriental del bosque, con el linde del mismo frente a ti");
 		} else if (coordX >= ancho && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu espalda");
+			Log.info("Te encuentras en el borde oriental del bosque, con el linde del mismo a tu espalda");
 			/* ?, 0. */
 		} else if (coordY == 0 && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde norte del bosque, con el linde del mismo frente a ti");
-			log("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
+			Log.info("Te encuentras en el borde norte del bosque, con el linde del mismo frente a ti");
+			Log.info("Si quieres salir, presiona " + Constantes.ACCION_SALIDA_VOLUNTARIA);
 		} else if (coordY == 0 && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde norte del bosque, con el linde del mismo a tu espalda");
+			Log.info("Te encuentras en el borde norte del bosque, con el linde del mismo a tu espalda");
 		} else if (coordY == 0 && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde norte del bosque, con el linde del mismo a tu izquierda");
+			Log.info("Te encuentras en el borde norte del bosque, con el linde del mismo a tu izquierda");
 		} else if (coordY == 0 && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde norte del bosque, con el linde del mismo a tu derecha");
+			Log.info("Te encuentras en el borde norte del bosque, con el linde del mismo a tu derecha");
 			/* ?, MAX. */
 		} else if (coordY >= alto && Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sur del bosque, con el linde del mismo a tu espalda");
+			Log.info("Te encuentras en el borde sur del bosque, con el linde del mismo a tu espalda");
 		} else if (coordY >= alto && Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sur del bosque, con el linde del mismo frente a ti");
+			Log.info("Te encuentras en el borde sur del bosque, con el linde del mismo frente a ti");
 		} else if (coordY >= alto && Constantes.ACCION_MIRAR_ESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sur del bosque, con el linde del mismo a tu derecha");
+			Log.info("Te encuentras en el borde sur del bosque, con el linde del mismo a tu derecha");
 		} else if (coordY >= alto && Constantes.ACCION_MIRAR_OESTE.equalsIgnoreCase(encarado)) {
-			log("Te encuentras en el borde sur del bosque, con el linde del mismo a tu izquierda");
+			Log.info("Te encuentras en el borde sur del bosque, con el linde del mismo a tu izquierda");
 			/* ?.?. */
 		} else {
-			log("Te encuentras en el borde del bosque, pero no sabes exactamente d\u00e9nde");
+			Log.info("Te encuentras en el borde del bosque, pero no sabes exactamente d\u00e9nde");
 		}
 
 		tablero.getAlto();
@@ -177,8 +168,8 @@ public class JuegoHelper {
 	}
 
 	static void printTurno(int turnoAparente) {
-		log("Turno [" + turnoAparente + "]");
-		log("------------------------------");
+		Log.info("Turno [" + turnoAparente + "]");
+		Log.info("------------------------------");
 	}
 
 }

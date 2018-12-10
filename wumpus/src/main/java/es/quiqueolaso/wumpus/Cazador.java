@@ -87,6 +87,11 @@ public class Cazador extends Item {
 		this.encarado = encararInicial();
 	}
 
+	/**
+	 * Encarar inicial.
+	 *
+	 * @return the string
+	 */
 	private String encararInicial() {
 		Random randomizer = new Random();
 		List<String> list = new ArrayList<String>();
@@ -153,6 +158,29 @@ public class Cazador extends Item {
 			respuesta = "";
 		}
 		return respuesta;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbr = new StringBuilder();
+		sbr.append("Cazador[");
+		sbr.append("x=");
+		sbr.append(this.getCoordX());
+		sbr.append(",y=");
+		sbr.append(this.getCoordY());
+		sbr.append(",encarado=");
+		sbr.append(this.getEncarado());
+		sbr.append(",num.flechas=");
+		sbr.append(this.getNumeroFlechas());
+		sbr.append(",alive=");
+		sbr.append(this.isAlive());
+		sbr.append("]");
+		return sbr.toString();
 	}
 
 }

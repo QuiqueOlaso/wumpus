@@ -6,8 +6,11 @@ package es.quiqueolaso.wumpus.utils;
  */
 public class Option {
 
+	/** The flag. */
+	String flag;
+
 	/** The opt. */
-	String flag, opt;
+	String opt;
 
 	/**
 	 * Instantiates a new option.

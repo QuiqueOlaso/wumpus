@@ -41,4 +41,23 @@ public class Wumpus extends Item {
 		this.alive = true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sbr = new StringBuilder();
+		sbr.append("Trampa[");
+		sbr.append("x=");
+		sbr.append(this.getCoordX());
+		sbr.append(",y=");
+		sbr.append(this.getCoordY());
+		sbr.append(",alive=");
+		sbr.append(this.isAlive());
+		sbr.append("]");
+		return sbr.toString();
+	}
+
 }
