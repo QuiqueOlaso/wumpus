@@ -226,7 +226,6 @@ public class Tablero {
 				if (this.wumpus.getCoordX() == xxx && this.wumpus.getCoordY() == yyy) {
 					sbf.append(Constantes.LEYENDA_WUMPUS); /* W. */
 				} else if (this.cazador.getCoordX() == xxx && this.cazador.getCoordY() == yyy) {
-					// sbf.append("\u0043"); /* C. */
 					if (Constantes.ACCION_MIRAR_NORTE.equalsIgnoreCase(cazador.getEncarado())) {
 						sbf.append(Constantes.LEYENDA_CAZADOR_NORTE);
 					} else if (Constantes.ACCION_MIRAR_SUR.equalsIgnoreCase(cazador.getEncarado())) {
